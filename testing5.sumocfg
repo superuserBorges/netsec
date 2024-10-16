@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+    <input>
+        <net-file value="testing6.net.xml"/>  <!-- Ensure the network file exists -->
+        <route-files value="testing6.rou.xml"/>  <!-- Ensure the route file exists -->
+    </input>
+    <time>
+        <begin value="0"/>
+        <end value="1000"/>
+    </time>
+</configuration>

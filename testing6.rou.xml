@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!-- generated on 2024-10-13 19:32:00.774910 by randomTrips.py v1_20_0+0002-343658e7c64
+<configuration>
+    <net-file value="testing6.net.xml"/>
+    <output-trip-file value="testing6.rou.xml"/>
+    <end value="100.0"/>
+    <period value="5.0"/>
+</configuration>
+-->
+
+<routes xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://sumo.dlr.de/xsd/routes_file.xsd">
+    <trip id="0" depart="0.00" from="168256686#2" to="-11948849#2"/>
+    <trip id="1" depart="5.00" from="-168256686#6" to="-168256686#3"/>
+    <trip id="2" depart="10.00" from="3542461#1" to="168256686#4"/>
+    <trip id="3" depart="15.00" from="3663852" to="-11948849#4"/>
+    <trip id="4" depart="20.00" from="-3663850#1" to="-11948849#2"/>
+    <trip id="5" depart="25.00" from="-168256686#2" to="11948849#4"/>
+    <trip id="6" depart="30.00" from="-11948849#2" to="-168256686#2"/>
+    <trip id="7" depart="35.00" from="168256686#2" to="11948849#5"/>
+    <trip id="8" depart="40.00" from="-168256686#2" to="168256686#0"/>
+    <trip id="9" depart="45.00" from="3663849#3" to="-11948849#0"/>
+    <trip id="10" depart="50.00" from="3663849#3" to="168256686#4"/>
+    <trip id="11" depart="55.00" from="-3663848#1" to="-168256686#1"/>
+    <trip id="12" depart="60.00" from="956073355#0" to="-3663849#2"/>
+    <trip id="13" depart="65.00" from="-11948849#4" to="-11948849#4"/>
+    <trip id="14" depart="70.00" from="3663850#0" to="168256686#1"/>
+    <trip id="15" depart="75.00" from="3663849#3" to="3542461#1"/>
+    <trip id="16" depart="80.00" from="11948849#4" to="956073355#0"/>
+    <trip id="17" depart="85.00" from="-3663849#6" to="1278511465"/>
+    <trip id="18" depart="90.00" from="3663850#0" to="168256686#1"/>
+    <trip id="19" depart="95.00" from="3663851" to="168256686#0"/>
+</routes>
