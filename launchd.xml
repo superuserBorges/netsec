@@ -1,0 +1,6 @@
+<launch>
+	<copy file="testing5.sumocfg"/>
+	<copy file="testing6.net.xml"/>
+	<copy file="testing6.rou.xml"/>
+	<cmd>sumo-gui -c testing5.sumocfg --remote-port 9999</cmd>
+</launch>
