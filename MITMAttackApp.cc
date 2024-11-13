@@ -13,7 +13,7 @@ void MITMAttackApp::initialize(int stage)
     if (stage == 0) {
         // Get configuration parameters
         nodeId = getParentModule()->getIndex(); // Get the vehicle's index as its ID
-        isAttacker = (nodeId == par("attackerNode").intValue()); // Define attacker based on node ID
+        isAttacker = par("attackerNode").boolValue(); // Define attacker based on node ID
         attackTime = par("attackTime").doubleValue();
         senderNode = par("senderNode").intValue();
         
@@ -25,7 +25,6 @@ void MITMAttackApp::initialize(int stage)
         
         if (isAttacker) {
             findHost()->getDisplayString().setTagArg("i", 1, "red");
-            findHost()->getDisplayString().setTagArg("is", 0, "2");
                 
             EV_INFO << "MITM Attack Vehicle initialized as Node " << nodeId << " at " << simTime() << endl;
         }
