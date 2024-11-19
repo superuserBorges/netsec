@@ -10,7 +10,8 @@ public:
     MITMAttackApp() : sendMessageEvt(nullptr),
                       isAttacker(false), 
                       hasAttacked(false), hasReceivedWarning(false),
-                      hasSentMessage(false), nodeId(-1), senderNode(-1) {}
+                      hasSentMessage(false), nodeId(-1), senderNode(-1),
+                      attackType(0) {}
     
     virtual ~MITMAttackApp() {
         cancelAndDelete(sendMessageEvt);
@@ -35,6 +36,7 @@ private:
     int nodeId;
     int senderNode;
     double attackTime;
+    int attackType;
 };
 
 }

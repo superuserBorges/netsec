@@ -13,9 +13,10 @@ void MITMAttackApp::initialize(int stage)
     if (stage == 0) {
         // Get configuration parameters
         nodeId = getParentModule()->getIndex(); // Get the vehicle's index as its ID
-        isAttacker = par("attackerNode").boolValue(); // Define attacker based on node ID
+        isAttacker = par("isAttacker").boolValue(); // Define attacker based on node ID
         attackTime = par("attackTime").doubleValue();
         senderNode = par("senderNode").intValue();
+        attackType = par("attackType").intValue(); // Attack type: 1 = Delay, 2 = Drop, 3 = Tamper
         
         // Initialize status
         hasAttacked = false;
@@ -66,14 +67,31 @@ void MITMAttackApp::onWSM(BaseFrame1609_4* frame)
     std::string message = wsm->getDemoData();
     
     if (isAttacker && !hasAttacked) {
-        if (message.find("STATUS:normal") != std::string::npos) {
-            // RSU modifies and forwards the message
-            TraCIDemo11pMessage* modifiedMsg = wsm->dup();
-            modifiedMsg->setDemoData("WARNING:accident");
-            sendDown(modifiedMsg);
-            
-            hasAttacked = true;
-            EV_INFO << "Vehicle " << nodeId << " (Attacker) modified and forwarded message at " << simTime() << endl;
+        switch (attackType) {
+            case 1: // Message Delay
+                if (message.find("STATUS:normal") != std::string::npos) {
+                    scheduleAt(simTime() + 5.0, new cMessage("delayedMessage", frame)); // Delay by 5 seconds
+                    hasAttacked = true;
+                    EV_INFO << "Vehicle " << nodeId << " (Attacker) delayed the message at " << simTime() << endl;
+                }
+                break;
+
+            case 2: // Message Drop
+                if (message.find("STATUS:normal") != std::string::npos) {
+                    hasAttacked = true;
+                    EV_INFO << "Vehicle " << nodeId << " (Attacker) dropped the message at " << simTime() << endl;
+                }
+                break;
+
+            case 3: // Message Tamper
+                if (message.find("STATUS:normal") != std::string::npos) {
+                    TraCIDemo11pMessage* modifiedMsg = wsm->dup();
+                    modifiedMsg->setDemoData("WARNING:accident");
+                    sendDown(modifiedMsg);
+                    hasAttacked = true;
+                    EV_INFO << "Vehicle " << nodeId << " (Attacker) modified and forwarded message at " << simTime() << endl;
+                }
+                break;
         }
     }
     else if (!isAttacker && !hasReceivedWarning && nodeId != senderNode) {
